@@ -5,7 +5,7 @@
 :root {
     --main-accent: #33FFFB;
     --light-accent-color: #209F9D;
-    --dark-accent-color: #339DFF;
+    --dark-accent-color: #3F4141;
     --main-gray: #7E8181;
     --background-color: #333333;
 }
@@ -27,6 +27,7 @@
 
 body {
     background-color: var(--background-color);
+    color: white;
 }
 
 a {
@@ -35,4 +36,34 @@ a {
 
 a:hover {
     cursor: pointer;
+}
+
+
+/* ---------------------------- */
+/* Navbar */
+/* ---------------------------- */
+
+#nav {
+    height: 60px;
+    background: var(--dark-accent-color);
+    margin-bottom: 20px;
+}
+
+#navContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100%; /* Takes 100% of the parent */
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.nav-header {
+    color: var(--main-accent);
+    font-size: 2em;
+}
+
+#addBtn {
+    font-size: 1.5em;
+    color: var(--main-accent);
 }
