@@ -118,5 +118,5 @@ input[type='submit'], button {
 input[type='submit']:hover, button:hover {
     cursor: pointer;
     color: var(--main-accent);
-    background: white;
+    background: var(--main-white);
 }
