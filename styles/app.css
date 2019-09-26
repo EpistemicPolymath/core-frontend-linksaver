@@ -39,6 +39,10 @@ a:hover {
     cursor: pointer;
 }
 
+.hidden {
+    display: none;
+}
+
 
 /* ---------------------------- */
 /* Navbar */
