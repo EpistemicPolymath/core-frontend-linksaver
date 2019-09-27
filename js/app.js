@@ -8,6 +8,7 @@ const addedCategories = document.querySelector("#addedCategories");
 
 const linksList = document.querySelector("#linksList");
 
+let editIndex = -1; // by default we do not edit anything
 let linkedCategories = [];
 let links = [
     {
@@ -34,13 +35,14 @@ let links = [
 const displayLinks = () => {
     linksList.innerHTML = '';
 
+    let index = 0; // Keep track of the index
     for (let link of links) {
         let linkHTMLString = `
         
             <div class="link panel">
                 <div class="link-options">
-                    <button class="btn-sm">Delete</button>
-                    <button class="btn-sm">Edit</button>
+                    <button class="btn-sm" onclick="deleteLink(${index})">Delete</button>
+                    <button class="btn-sm" onclick="editLink(${index})">Edit</button>
                 </div>
 
                 <a href="${link.url}"><h1 class="header">${link.title}</h1></a>
@@ -58,7 +60,29 @@ const displayLinks = () => {
                 `;
 
         linksList.innerHTML += linkHTMLString;
+        index++;
     }
+}
+
+// Delete Link Button Functionality
+const deleteLink = (index) => {
+    // https://www.w3schools.com/jsref/jsref_splice.asp
+    links.splice(index, 1);
+    displayLinks();
+
+}
+
+// Edit Link Button Functionality
+const editLink = (index) => {
+    editIndex = index; 
+    // Use the index to determine the existing values for the Link
+    linkTitle.value = links[index].title;
+    linkUrl.value = links[index].url;
+    linkedCategories = links[index].categories;
+
+    // Show the Add Link Form Panel
+    showFormPanel();
+
 }
 
 displayLinks();
@@ -82,6 +106,7 @@ cancelButton.addEventListener('click', () => {
 const showFormPanel = () => {
     // Removes the hidden class from the panel
     addLinkPanel.classList.remove("hidden");
+    displayLinkCatgeories();
 }
 
 // Hides the Add Link Panel
@@ -142,8 +167,15 @@ submitButton.addEventListener('click', (event) => {
         categories
     }
 
-    // Push new link to array of links
-    links.unshift(newLink); // We could use push, but unshift pushes it to top
+    // Check if we have an edit index
+    if (editIndex === -1 ) {
+        // Push new link to array of links
+        links.unshift(newLink); // We could use push, but unshift pushes it to top
+    } else if (editIndex >= 0) {
+        links[editIndex] = newLink;
+        editIndex = -1;
+    }
+  
 
     // Clears out all of the inputs in the form
     clearLinkForm();
