@@ -83,6 +83,17 @@ a:hover {
     color: var(--main-white);
 }
 
+@media only screen and (max-width: 786px) {
+    #nav {
+        height: 100px;
+    }
+
+    #navContainer {
+        flex-direction: column;
+        justify-content: center;
+    }
+} /* 786px and below */
+
 /* ---------------------------- */
 /* Panel */
 /* ---------------------------- */
@@ -141,6 +152,16 @@ input[type='submit']:hover, button:hover {
 .link {
     position: relative;
 }
+
+#linksList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-item {
+    flex-basis: 100%; /* Each item will take up 100% of available space*/
+}
+
 .link-options {
     position: absolute; /* Works with the position of the link */
     top: 5px;
@@ -166,3 +187,14 @@ input[type='submit']:hover, button:hover {
     background-color: var(--main-accent);
     color: var(--light-accent-color);
 }
+
+@media only screen and (min-width: 786px) { 
+    .flex-item {
+        flex-basis: 50%;
+    } 
+} /* 786px and above */
+@media only screen and (min-width: 1280px) { 
+    .flex-item {
+        flex-basis: 33%;
+    }
+} /* 1280px and above */

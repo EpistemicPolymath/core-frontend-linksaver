@@ -38,7 +38,7 @@ const displayLinks = () => {
     let index = 0; // Keep track of the index
     for (let link of links) {
         let linkHTMLString = `
-        
+        <div class="flex-item">
             <div class="link panel">
                 <div class="link-options">
                     <button class="btn-sm" onclick="deleteLink(${index})">Delete</button>
@@ -57,6 +57,7 @@ const displayLinks = () => {
                 linkHTMLString += `
                     </div>
                 </div>
+            </div>
                 `;
 
         linksList.innerHTML += linkHTMLString;
