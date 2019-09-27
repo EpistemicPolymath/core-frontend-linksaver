@@ -76,11 +76,23 @@ a:hover {
 .nav-header {
     color: var(--main-white);
     font-size: 2em;
+    transition: all 0.25s;
+}
+
+.nav-header:hover {
+    color: var(--main-accent);
+    letter-spacing: 10px;
+    transform: scale(1.05);
 }
 
 #addBtn {
     font-size: 1.5em;
     color: var(--main-white);
+    transition: transform 2s 0s;
+}
+
+#addBtn:hover {
+    transform: scale(1.2);
 }
 
 @media only screen and (max-width: 786px) {
@@ -132,6 +144,7 @@ input[type='submit'], button {
     background-color: var(--main-accent);
     color: var(--light-accent-color);
     font-size: 16px;
+    transition: all 0.25s;
 }
 
 input[type='submit']:hover, button:hover {
