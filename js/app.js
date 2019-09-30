@@ -5,6 +5,7 @@ const addBtn = document.querySelector("#addBtn");
 const cancelButton = document.querySelector("#cancelButton");
 const addLinkPanel = document.querySelector("#addLinkPanel");
 const addedCategories = document.querySelector("#addedCategories");
+const addLinkContainer = document.querySelector("#addLinkContainer");
 
 const linksList = document.querySelector("#linksList");
 
@@ -106,14 +107,14 @@ cancelButton.addEventListener('click', () => {
 // Shows the Add Link Panel
 const showFormPanel = () => {
     // Removes the hidden class from the panel
-    addLinkPanel.classList.remove("hidden");
+    addLinkContainer.classList.remove("hidden");
     displayLinkCatgeories();
 }
 
 // Hides the Add Link Panel
 const hideFormPanel = () => {
     // Adds the hidden class to the panel
-    addLinkPanel.classList.add("hidden");
+    addLinkContainer.classList.add("hidden");
     clearLinkForm();
 }
 
@@ -160,7 +161,7 @@ submitButton.addEventListener('click', (event) => {
     const title = linkTitle.value;
     const url = linkUrl.value;
     const categories = linkedCategories;
-    
+
     // Create a new link object
     const newLink = {
         title,
@@ -170,6 +171,16 @@ submitButton.addEventListener('click', (event) => {
 
     // Check if we have an edit index
     if (editIndex === -1 ) {
+
+        // Basic Validation
+        if (title === '' || url === '' || (categories && categories.length)) {
+            addLinkPanel.classList.add("shake");
+            setTimeout(() => {
+                addLinkPanel.classList.remove("shake");
+            }, 1000);
+            return;
+        }
+        
         // Push new link to array of links
         links.unshift(newLink); // We could use push, but unshift pushes it to top
     } else if (editIndex >= 0) {
