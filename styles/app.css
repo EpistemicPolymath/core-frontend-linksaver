@@ -194,6 +194,10 @@ input[type='submit']:hover, button:hover {
     position: relative;
 }
 
+.link:hover {
+    box-shadow: 0 0 3px var(--main-accent);
+}
+
 #linksList {
     display: flex;
     flex-wrap: wrap;

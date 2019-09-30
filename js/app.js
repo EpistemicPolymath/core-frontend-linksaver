@@ -13,24 +13,31 @@ let editIndex = -1; // by default we do not edit anything
 let linkedCategories = [];
 let links = [
     {
-        title: "My Website",
+        title: "Personal Website",
         url: "http://jentillman.com",
-        categories: ['blog','personal']
+        categories: ['Blog','Personal', 'Thoughts'],
+        date: new Date()
     },
         
     {
-        title: "Flexbox Resource",
-        url: "https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties",
-        categories: ['learning','web-dev', 'coding']
+        title: "Wes Bos Courses",
+        url: "http://wesbos.com/courses/",
+        categories: ['Node','ES6+', 'FlexBox', 'React'],
+        date: new Date()
     },
 
     {
-        title: "JS This Keyword",
-        url: "https://ultimatecourses.com/blog/understanding-the-this-keyword-in-javascript",
-        categories: ['javascript','coding', 'learning']
+        title: "Traversy Media",
+        url: "https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA",
+        categories: ['Node','CSS', 'JavaScript'],
+        date: new Date()
     }
 ];
 
+// Formats the Date Property For Links
+const formatDate = (date) => {
+    return `${("0" + (date.getMonth() + 1)).slice(-2)}/${("0" + date.getDate()).slice(-2)}/${date.getFullYear()}`;
+}
 
 // Displays the Saved Links on the Page
 const displayLinks = () => {
@@ -47,7 +54,7 @@ const displayLinks = () => {
                 </div>
 
                 <a href="${link.url}"><h1 class="header">${link.title}</h1></a>
-                <p class="link-date">${Date.now()}</p>
+                <p class="link-date">${formatDate(link.date)}</p>
 
                 <div class="categories">
                     Categories:`;
@@ -166,7 +173,8 @@ submitButton.addEventListener('click', (event) => {
     const newLink = {
         title,
         url,
-        categories
+        categories, 
+        date: new Date()
     }
 
     // Check if we have an edit index
@@ -201,4 +209,5 @@ submitButton.addEventListener('click', (event) => {
     // Display the Links
     displayLinks();
 });
+
 
